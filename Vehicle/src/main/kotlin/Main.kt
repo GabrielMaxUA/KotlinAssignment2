@@ -38,6 +38,7 @@ class Car(color: String, make: String, model: String, var numberOfDoors: String)
     override fun toString(): String {  
         return """
         Car
+
 Model: $model
 Make: $make
 Number of doors: $numberOfDoors        
@@ -78,7 +79,9 @@ class Bus(color: String, make: String, model: String, var passengerCapacity: Int
 
     override fun toString(): String {  
        return """
+
         Bus
+        
 Model: $model
 Make: $make
 Passenger Capacity: $passengerCapacity 

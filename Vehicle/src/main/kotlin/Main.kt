@@ -1,13 +1,13 @@
 fun main() {
     var newCar = Car("red", "Mazda", "MX-3", "4")  // Create a new car instance
     println(newCar.toString())  // Print the car's details
-    newCar.accelerate(6.1)  // Call the accelerate method with an acceleration of 6.1 m/s²
+    newCar.accelerate(6.1, 110.0)  // Call the accelerate method with an acceleration of 6.1 m/s²
     newCar.fullStop(130.0, 14.2)  // Call the fullStop method with a speed of 130 km/h and deceleration of 14.2 m/s²
     newCar.parallelPark()  // Call the parallelPark method
 
     val newBus = Bus("yellow", "Volvo", "B340", 50)  // Create a new bus instance
     println(newBus.toString())  // Print the bus's details
-    newBus.accelerate(4.5)  // Call the accelerate method with an acceleration of 4.5 m/s²
+    newBus.accelerate(4.5, 120.0)  // Call the accelerate method with an acceleration of 4.5 m/s²
     newBus.fullStop(80.0, 10.0)  // Call the fullStop method with a speed of 80 km/h and deceleration of 10 m/s²
     newBus.openRearDoor()  // Call the openRearDoor method
 }
@@ -15,7 +15,7 @@ fun main() {
 
 
 abstract class Vehicle(var color: String, val make: String, val model: String) {
-    abstract fun accelerate(acceleration: Double): Double  
+    abstract fun accelerate(acceleration: Double, distance: Double): Double  
     // Abstract method to calculate the time to reach 100 km/h given the acceleration
     abstract fun fullStop(speed: Double, deceleration: Double): Double  
     // Abstract method to calculate the time to stop from a given speed and deceleration
@@ -23,9 +23,9 @@ abstract class Vehicle(var color: String, val make: String, val model: String) {
 
 
 class Car(color: String, make: String, model: String, var numberOfDoors: String) : Vehicle(color, make, model) {
-    override fun accelerate(acceleration: Double): Double {  
-        val timeRate = 100 / acceleration  // Calculate the time to reach 100 km/h
-        println("Your vehicle's acceleration from 0 km/h to 100 km/h is %.2f seconds".format(timeRate))  // Print the acceleration time
+    override fun accelerate(acceleration: Double, distance: Double): Double {  
+        val timeRate = distance / acceleration  // Calculate the time to reach 100 km/h
+        println("Your vehicle's acceleration from 0 km/h to ${distance} km/h is %.2f seconds".format(timeRate))  // Print the acceleration time
         return timeRate  // Return the calculated time
     }
 
@@ -42,7 +42,7 @@ class Car(color: String, make: String, model: String, var numberOfDoors: String)
 Model: $model
 Make: $make
 Number of doors: $numberOfDoors        
-""".trimIndent()  // Format and return the car's details
+""".trimIndent()  // Format and return the car's details with lining the code to the left
     }
 
     fun parallelPark() {  
@@ -60,9 +60,9 @@ Parallel parking completed.
 }
 
 class Bus(color: String, make: String, model: String, var passengerCapacity: Int) : Vehicle(color, make, model) {
-    override fun accelerate(acceleration: Double): Double {  
-        val timeRate = 100 / acceleration  // Calculate the time to reach 100 km/h
-        println("The bus accelerates from 0 km/h to 100 km/h in %.2f seconds".format(timeRate))  // Print the acceleration time
+    override fun accelerate(acceleration: Double, distance: Double): Double {  
+        val timeRate = distance / acceleration  // Calculate the time to reach 100 km/h
+        println("The bus accelerates from 0 km/h to ${distance} km/h in %.2f seconds".format(timeRate))  // Print the acceleration time
         return timeRate  // Return the calculated time
     }
 
@@ -85,6 +85,6 @@ class Bus(color: String, make: String, model: String, var passengerCapacity: Int
 Model: $model
 Make: $make
 Passenger Capacity: $passengerCapacity 
-        """.trimIndent()  // Format and return the bus's details
+        """.trimIndent()  // Format and return the bus's details with lining the code to the left
     }
 }
